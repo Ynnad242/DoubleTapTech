@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DoubleTapTech - AI Finder Coming Soon</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        /* Base styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background-color: #0a0e13;
+            color: #ffffff;
+            line-height: 1.6;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        /* Header - consistent with other pages */
+        .main-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1rem 2rem;
+            background-color: rgba(10, 14, 19, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .site-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-decoration: none;
+            transition: transform 0.2s ease;
+        }
+
+        .site-logo:hover {
+            transform: scale(1.02);
+        }
+
+        .logo-symbol {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, #00d4ff, #0099cc);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            font-size: 1.3rem;
+        }
+
+        .logo-name {
+            background: linear-gradient(135deg, #00d4ff, #0099cc);
+            padding: 6px 14px;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 0.95rem;
+            color: white;
+        }
+
+        .header-search {
+            flex: 1;
+            max-width: 450px;
+            margin: 0 3rem;
+            position: relative;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 0.875rem 1rem 0.875rem 3rem;
+            background-color: rgba(30, 35, 42, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 10px;
+            color: #ffffff;
+            font-size: 0.9rem;
+            font-family: inherit;
+            transition: all 0.3s ease;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: rgba(0, 212, 255, 0.5);
+            background-color: rgba(30, 35, 42, 0.95);
+        }
+
+        .search-input::placeholder {
+            color: #6b7280;
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #6b7280;
+            font-size: 1.1rem;
+        }
+
+        .main-nav {
+            display: flex;
+            align-items: center;
+            gap: 2.5rem;
+        }
+
+        .nav-link {
+            color: #9ca3af;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-link:hover {
+            color: #00d4ff;
+        }
+
+        .nav-link.current {
+            color: #00d4ff;
+        }
+
+        .nav-link.current::after {
+            content: '';
+            position: absolute;
+            bottom: -1.5rem;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #00d4ff, #0099cc);
+            border-radius: 1px;
+        }
+
+        /* Coming soon section */
+        .coming-soon-section {
+            min-height: calc(100vh - 80px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            text-align: center;
+            position: relative;
+            background: radial-gradient(ellipse at center, rgba(124, 58, 237, 0.08) 0%, rgba(10, 14, 19, 1) 60%);
+        }
+
+        .coming-soon-content {
+            max-width: 700px;
+            z-index: 10;
+            position: relative;
+        }
+
+        .robot-illustration {
+            width: 280px;
+            height: 280px;
+            margin: 0 auto 3rem;
+            background: linear-gradient(135deg, #1a1f26, #2d3748);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 8rem;
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.3);
+            animation: robotPulse 4s ease-in-out infinite;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .robot-illustration::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, #7c3aed, #00d4ff, #7c3aed);
+            border-radius: 50%;
+            z-index: -1;
+            animation: rotateGradient 3s linear infinite;
+        }
+
+        .robot-illustration img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+
+        .main-heading {
+            font-size: 4rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, #7c3aed, #00d4ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .sub-heading {
+            font-size: 1.8rem;
+            color: #9ca3af;
+            margin-bottom: 2rem;
+            font-weight: 400;
+            animation: fadeInUp 0.8s ease-out 0.2s both;
+        }
+
+        .feature-description {
+            font-size: 1.15rem;
+            color: #6b7280;
+            line-height: 1.8;
+            margin-bottom: 3rem;
+            max-width: 580px;
+            margin-left: auto;
+            margin-right: auto;
+            animation: fadeInUp 0.8s ease-out 0.4s both;
+        }
+
+        .development-progress {
+            width: 100%;
+            max-width: 450px;
+            height: 12px;
+            background: rgba(26, 31, 38, 0.8);
+            border-radius: 6px;
+            margin: 2.5rem auto;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            animation: fadeInUp 0.8s ease-out 0.6s both;
+        }
+
+        .progress-indicator {
+            height: 100%;
+            background: linear-gradient(90deg, #7c3aed, #00d4ff);
+            border-radius: 6px;
+            width: 0%;
+            transition: width 3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+        }
+
+        .progress-indicator::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            animation: shimmer 2s infinite;
+        }
+
+        .progress-label {
+            color: #9ca3af;
+            font-size: 0.95rem;
+            margin-top: 1rem;
+            font-weight: 500;
+        }
+
+        .cta-buttons {
+            margin-top: 3rem;
+            animation: fadeInUp 0.8s ease-out 0.8s both;
+        }
+
+        .secondary-button {
+            background: rgba(26, 31, 38, 0.8);
+            color: #00d4ff;
+            border: 2px solid rgba(0, 212, 255, 0.3);
+            padding: 1.2rem 2.5rem;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-family: inherit;
+        }
+
+        .secondary-button:hover {
+            background: rgba(0, 212, 255, 0.1);
+            border-color: #00d4ff;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.2);
+        }
+
+        /* Floating decorative elements */
+        .floating-decoration {
+            position: absolute;
+            opacity: 0.06;
+            animation: floatDecoration 10s ease-in-out infinite;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .floating-decoration:nth-child(1) {
+            top: 12%;
+            left: 8%;
+            animation-delay: 0s;
+            font-size: 3rem;
+        }
+
+        .floating-decoration:nth-child(2) {
+            top: 65%;
+            right: 12%;
+            animation-delay: 4s;
+            font-size: 2.5rem;
+        }
+
+        .floating-decoration:nth-child(3) {
+            bottom: 15%;
+            left: 15%;
+            animation-delay: 7s;
+            font-size: 3.5rem;
+        }
+
+        /* Animation keyframes */
+        @keyframes robotPulse {
+            0%, 100% {
+                transform: scale(1);
+                box-shadow: 0 30px 80px rgba(0, 0, 0, 0.3);
+            }
+            50% {
+                transform: scale(1.05);
+                box-shadow: 0 35px 90px rgba(124, 58, 237, 0.2);
+            }
+        }
+
+        @keyframes rotateGradient {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes shimmer {
+            0% {
+                left: -100%;
+            }
+            100% {
+                left: 100%;
+            }
+        }
+
+        @keyframes floatDecoration {
+            0%, 100% {
+                transform: translateY(0px) rotate(0deg);
+                opacity: 0.06;
+            }
+            33% {
+                transform: translateY(-25px) rotate(2deg);
+                opacity: 0.1;
+            }
+            66% {
+                transform: translateY(-12px) rotate(-1deg);
+                opacity: 0.08;
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Mobile responsiveness */
+        @media (max-width: 768px) {
+            .header-search {
+                margin: 0 1rem;
+            }
+
+            .main-nav {
+                display: none;
+            }
+
+            .main-heading {
+                font-size: 2.8rem;
+            }
+
+            .sub-heading {
+                font-size: 1.4rem;
+            }
+
+            .robot-illustration {
+                width: 220px;
+                height: 220px;
+                font-size: 6rem;
+                margin-bottom: 2rem;
+            }
+
+            .feature-description {
+                font-size: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .main-header {
+                padding: 1rem;
+            }
+            
+            .coming-soon-section {
+                padding: 1rem;
+            }
+            
+            .main-heading {
+                font-size: 2.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Floating decorative elements -->
+    <div class="floating-decoration">🤖</div>
+    <div class="floating-decoration">⚡</div>
+    <div class="floating-decoration">🔍</div>
+
+    <!-- Main header navigation -->
+    <header class="main-header">
+        <a href="index.html" class="site-logo">
+            <div class="logo-symbol">⚡</div>
+            <div class="logo-name">DoubleTapTech</div>
+        </a>
+        
+        <div class="header-search">
+            <div class="search-icon">🔍</div>
+            <input type="text" class="search-input" placeholder="Search for gaming gear...">
+        </div>
+        
+        <nav class="main-nav">
+            <a href="reviewed-products.html" class="nav-link">Reviews</a>
+            <a href="AI-finder.html" class="nav-link current">AI Finder</a>
+            <a href="meet-the-team.html" class="nav-link">Meet the Team</a>
+        </nav>
+    </header>
+
+    <!-- Coming soon content -->
+    <main class="coming-soon-section">
+        <div class="coming-soon-content">
+            <div class="robot-illustration">
+                <img src="robot.png" alt="AI Robot Placeholder" onerror="this.style.display='none'; this.parentElement.innerHTML='🤖';">
+            </div>
+            
+            <h1 class="main-heading">Coming Soon</h1>
+            <h2 class="sub-heading">AI-Powered Recommendations</h2>
+            
+            <p class="feature-description">
+                Our AI is tailored to your gaming style, combining the knowledge and preferences of Danny and Alec. 
+                Imagine how they would review and pick the perfect gear just for you - that's exactly what our AI will do.
+            </p>
+            
+            <div class="development-progress">
+                <div class="progress-indicator" id="progressBar"></div>
+            </div>
+            <div class="progress-label" id="progressLabel">5% Complete</div>
+
+            <div class="cta-buttons">
+                <a href="reviewed-products.html" class="secondary-button">
+                    Browse Our Reviews Instead →
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Progress bar animation
+        function animateProgressBar() {
+            const progressBar = document.getElementById('progressBar');
+            const progressLabel = document.getElementById('progressLabel');
+            let currentProgress = 0;
+            const targetProgress = 5; // Showing more realistic development progress
+            
+            const progressAnimation = setInterval(() => {
+                if (currentProgress < targetProgress) {
+                    currentProgress += 0.2;
+                    if (currentProgress > targetProgress) {
+                        currentProgress = targetProgress;
+                    }
+                    
+                    progressBar.style.width = currentProgress + '%';
+                    progressLabel.textContent = Math.floor(currentProgress) + '% Complete';
+                } else {
+                    clearInterval(progressAnimation);
+                }
+            }, 30);
+        }
+
+        // Initialize animations when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            // Start progress bar animation after a short delay
+            setTimeout(animateProgressBar, 1000);
+
+            // Search functionality
+            const searchInput = document.querySelector('.search-input');
+            searchInput.addEventListener('keypress', function(event) {
+                if (event.key === 'Enter') {
+                    const searchTerm = this.value.trim();
+                    if (searchTerm) {
+                        window.location.href = `reviewed-products.html?search=${encodeURIComponent(searchTerm)}`;
+                    }
+                }
+            });
+        });
+
+        // Add some interactive hover effects
+        document.querySelector('.robot-illustration').addEventListener('mouseenter', function() {
+            this.style.transform = 'scale(1.05)';
+        });
+
+        document.querySelector('.robot-illustration').addEventListener('mouseleave', function() {
+            this.style.transform = 'scale(1)';
+        });
+    </script>
+</body>
+</html>

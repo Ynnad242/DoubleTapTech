@@ -1,0 +1,1020 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DoubleTapTech - Product Review</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        /* Base styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background-color: #0a0e13;
+            color: #ffffff;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Header - consistent with other pages */
+        .main-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1rem 2rem;
+            background-color: rgba(10, 14, 19, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .site-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-decoration: none;
+            transition: transform 0.2s ease;
+        }
+
+        .site-logo:hover {
+            transform: scale(1.02);
+        }
+
+        .logo-symbol {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, #00d4ff, #0099cc);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            font-size: 1.3rem;
+        }
+
+        .logo-name {
+            background: linear-gradient(135deg, #00d4ff, #0099cc);
+            padding: 6px 14px;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 0.95rem;
+            color: white;
+        }
+
+        .header-search {
+            flex: 1;
+            max-width: 450px;
+            margin: 0 3rem;
+            position: relative;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 0.875rem 1rem 0.875rem 3rem;
+            background-color: rgba(30, 35, 42, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 10px;
+            color: #ffffff;
+            font-size: 0.9rem;
+            font-family: inherit;
+            transition: all 0.3s ease;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: rgba(0, 212, 255, 0.5);
+            background-color: rgba(30, 35, 42, 0.95);
+        }
+
+        .search-input::placeholder {
+            color: #6b7280;
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #6b7280;
+            font-size: 1.1rem;
+        }
+
+        .main-nav {
+            display: flex;
+            align-items: center;
+            gap: 2.5rem;
+        }
+
+        .nav-link {
+            color: #9ca3af;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: #00d4ff;
+        }
+
+        /* Back navigation */
+        .back-navigation {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #9ca3af;
+            text-decoration: none;
+            font-weight: 500;
+            margin: 2rem 0 1rem 2rem;
+            transition: color 0.3s ease;
+        }
+
+        .back-navigation:hover {
+            color: #00d4ff;
+        }
+
+        /* Main review container */
+        .review-wrapper {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .review-hero {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            margin-bottom: 3rem;
+        }
+
+        .product-visuals {
+            position: relative;
+        }
+
+        .product-image-container {
+            width: 100%;
+            height: 500px;
+            background: linear-gradient(135deg, #1a1f26, #2d3748);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 8rem;
+            margin-bottom: 1.5rem;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        .product-image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 20px;
+        }
+
+        .video-review-link {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            background: linear-gradient(135deg, #ff0000, #cc0000);
+            color: white;
+            text-decoration: none;
+            padding: 1.25rem 2rem;
+            border-radius: 12px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+        }
+
+        .video-review-link:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(255, 0, 0, 0.4);
+        }
+
+        .product-summary {
+            padding: 2rem 0;
+        }
+
+        .product-type {
+            color: #00d4ff;
+            font-size: 0.95rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 1rem;
+        }
+
+        .product-name {
+            font-size: 3.2rem;
+            font-weight: 800;
+            margin-bottom: 0.75rem;
+            background: linear-gradient(135deg, #ffffff, #9ca3af);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .product-maker {
+            color: #9ca3af;
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+        }
+
+        .rating-showcase {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+            background: rgba(26, 31, 38, 0.6);
+            padding: 2rem;
+            border-radius: 16px;
+            border: 1px solid rgba(0, 212, 255, 0.2);
+        }
+
+        .rating-visual {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .star-display {
+            color: #ffd93d;
+            font-size: 1.8rem;
+        }
+
+        .rating-details {
+            flex: 1;
+        }
+
+        .rating-score {
+            color: #00d4ff;
+            font-size: 1.3rem;
+            font-weight: 700;
+        }
+
+        .rating-description {
+            color: #9ca3af;
+            font-size: 0.95rem;
+        }
+
+        .pricing-info {
+            margin-bottom: 2rem;
+        }
+
+        .price-heading {
+            color: #9ca3af;
+            font-size: 0.95rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .price-amount {
+            font-size: 2.8rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #00d4ff, #0099cc);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .summary-verdict {
+            background: rgba(26, 31, 38, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .verdict-heading {
+            color: #00d4ff;
+            font-weight: 700;
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .verdict-content {
+            color: #9ca3af;
+            line-height: 1.8;
+            font-size: 1.05rem;
+        }
+
+        /* Review tabs section */
+        .review-sections {
+            margin-top: 4rem;
+        }
+
+        .section-tabs {
+            display: flex;
+            gap: 0.75rem;
+            margin-bottom: 2rem;
+            background-color: rgba(26, 31, 38, 0.8);
+            padding: 0.75rem;
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .tab-button {
+            padding: 1rem 2rem;
+            background: transparent;
+            border: none;
+            color: #9ca3af;
+            font-weight: 600;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: inherit;
+            font-size: 0.95rem;
+        }
+
+        .tab-button:hover {
+            color: #00d4ff;
+            background-color: rgba(0, 212, 255, 0.1);
+        }
+
+        .tab-button.is-active {
+            background: linear-gradient(135deg, #00d4ff, #0099cc);
+            color: white;
+        }
+
+        .tab-container {
+            background: rgba(26, 31, 38, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 2.5rem;
+        }
+
+        .tab-section {
+            display: none;
+        }
+
+        .tab-section.is-active {
+            display: block;
+        }
+
+        .pros-cons-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+
+        .pros-section, .cons-section {
+            background: rgba(26, 31, 38, 0.8);
+            padding: 2rem;
+            border-radius: 16px;
+        }
+
+        .pros-section {
+            border: 1px solid rgba(34, 197, 94, 0.3);
+        }
+
+        .cons-section {
+            border: 1px solid rgba(239, 68, 68, 0.3);
+        }
+
+        .pros-heading {
+            color: #22c55e;
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .cons-heading {
+            color: #ef4444;
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .pros-list, .cons-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .pros-list li, .cons-list li {
+            color: #9ca3af;
+            margin-bottom: 1rem;
+            padding-left: 2rem;
+            position: relative;
+            line-height: 1.6;
+        }
+
+        .pros-list li::before {
+            content: "✓";
+            color: #22c55e;
+            font-weight: bold;
+            font-size: 1.1rem;
+            position: absolute;
+            left: 0;
+        }
+
+        .cons-list li::before {
+            content: "✗";
+            color: #ef4444;
+            font-weight: bold;
+            font-size: 1.1rem;
+            position: absolute;
+            left: 0;
+        }
+
+        .specifications-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .spec-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.25rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .spec-name {
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+        .spec-detail {
+            color: #9ca3af;
+        }
+
+        .full-review-content {
+            color: #9ca3af;
+            line-height: 1.8;
+            font-size: 1.1rem;
+        }
+
+        .full-review-content h4 {
+            color: #ffffff;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .full-review-content p {
+            margin-bottom: 1.5rem;
+        }
+
+        /* Mobile responsiveness */
+        @media (max-width: 968px) {
+            .review-hero {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .product-name {
+                font-size: 2.5rem;
+            }
+
+            .pros-cons-layout {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .header-search {
+                margin: 0 1rem;
+            }
+
+            .main-nav {
+                display: none;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .main-header {
+                padding: 1rem;
+            }
+            
+            .review-wrapper {
+                padding: 1rem;
+            }
+            
+            .back-navigation {
+                margin-left: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Main header navigation -->
+    <header class="main-header">
+        <a href="index.html" class="site-logo">
+            <div class="logo-symbol">⚡</div>
+            <div class="logo-name">DoubleTapTech</div>
+        </a>
+        
+        <div class="header-search">
+            <div class="search-icon">🔍</div>
+            <input type="text" class="search-input" placeholder="Search for gaming gear...">
+        </div>
+        
+        <nav class="main-nav">
+            <a href="reviewed-products.html" class="nav-link">Reviews</a>
+            <a href="AI-finder.html" class="nav-link">AI Finder</a>
+            <a href="meet-the-team.html" class="nav-link">Meet the Team</a>
+        </nav>
+    </header>
+
+    <!-- Back navigation -->
+    <a href="reviewed-products.html" class="back-navigation">
+        ← Back to Reviews
+    </a>
+
+    <!-- Main review content -->
+    <main class="review-wrapper">
+        <!-- Review hero section -->
+        <section class="review-hero">
+            <div class="product-visuals">
+                <div class="product-image-container" id="productImageDisplay">
+                    <span id="productIconDisplay">🖱️</span>
+                </div>
+                <a href="#" class="video-review-link" id="videoReviewLink">
+                    🎬 Watch Our Full Review Here
+                </a>
+            </div>
+            
+            <div class="product-summary">
+                <div class="product-type" id="productType">Gaming Mouse</div>
+                <h1 class="product-name" id="productNameDisplay">Loading...</h1>
+                <p class="product-maker" id="productMaker">Loading...</p>
+                
+                <div class="rating-showcase">
+                    <div class="rating-visual">
+                        <span class="star-display" id="productStarDisplay">★★★★★</span>
+                    </div>
+                    <div class="rating-details">
+                        <div class="rating-score" id="productRatingDisplay">5.0/5</div>
+                        <div class="rating-description">Our Rating</div>
+                    </div>
+                </div>
+                
+                <div class="pricing-info">
+                    <div class="price-heading">Current Market Price</div>
+                    <div class="price-amount" id="productPriceDisplay">$0.00</div>
+                </div>
+                
+                <div class="summary-verdict">
+                    <div class="verdict-heading">🎯 Quick Verdict</div>
+                    <p class="verdict-content" id="summaryVerdictText">
+                        Loading our quick take on this product...
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Review sections with tabs -->
+        <section class="review-sections">
+            <div class="section-tabs">
+                <button class="tab-button is-active" data-tab="full-review">Our Review</button>
+                <button class="tab-button" data-tab="pros-cons">Pros & Cons</button>
+                <button class="tab-button" data-tab="specifications">Specifications</button>
+            </div>
+            
+            <div class="tab-container">
+                <div class="tab-section is-active" id="full-review">
+                    <h3 style="margin-bottom: 2rem; color: #ffffff;">Our Detailed Review</h3>
+                    <div class="full-review-content" id="fullReviewText">
+                        Loading detailed review content...
+                    </div>
+                </div>
+                
+                <div class="tab-section" id="pros-cons">
+                    <h3 style="margin-bottom: 2rem; color: #ffffff;">Pros & Cons</h3>
+                    <div class="pros-cons-layout">
+                        <div class="pros-section">
+                            <h4 class="pros-heading">👍 What We Loved</h4>
+                            <ul class="pros-list" id="prosListDisplay">
+                                <!-- Pros will be loaded here -->
+                            </ul>
+                        </div>
+                        <div class="cons-section">
+                            <h4 class="cons-heading">👎 What Could Be Better</h4>
+                            <ul class="cons-list" id="consListDisplay">
+                                <!-- Cons will be loaded here -->
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="tab-section" id="specifications">
+                    <h3 style="margin-bottom: 2rem; color: #ffffff;">Technical Specifications</h3>
+                    <div class="specifications-grid" id="specificationsDisplay">
+                        <!-- Specs will be loaded here -->
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        // Comprehensive review database
+        const reviewDatabase = {
+            "op1-8k-v2": {
+                name: "OP1 8k v2",
+                brand: "Endgame Gear",
+                price: 89.99,
+                rating: 5.0,
+                category: "Gaming Mouse",
+                icon: "🖱️",
+                image: "op18k.jpeg",
+                videoUrl: "https://youtube.com/watch?v=example",
+                quickVerdict: "The OP1 8K v2 is hands down one of the best gaming mice we've ever tested. The 8000Hz polling rate is game-changing for competitive players, and the build quality is absolutely premium. At $89, it's incredible value.",
+                detailedReview: `
+                    <h4>Performance & Gaming Experience</h4>
+                    <p>After weeks of testing the OP1 8K v2, we can confidently say this mouse delivers on its promises. The 8000Hz polling rate provides incredibly responsive tracking that's immediately noticeable in fast-paced FPS games. The sensor accuracy is spot-on, with zero acceleration or smoothing issues.</p>
+                    
+                    <h4>Build Quality & Design</h4>
+                    <p>Endgame Gear has really stepped up their game with the build quality. The mouse feels solid without being heavy, and the coating provides excellent grip during intense gaming sessions. The minimalist design is clean and professional.</p>
+                    
+                    <h4>Value for Money</h4>
+                    <p>At $89, this mouse competes directly with premium options from Logitech and Razer that cost significantly more. You're getting flagship performance at a mid-range price point.</p>
+                    
+                    <h4>Final Thoughts</h4>
+                    <p>This is easily one of our top recommendations for competitive gamers. The combination of performance, build quality, and price makes it a standout choice in 2024.</p>
+                `,
+                pros: [
+                    "Incredible 8000Hz polling rate",
+                    "Premium build quality",
+                    "Excellent value for money",
+                    "Perfect sensor performance",
+                    "Comfortable ergonomics",
+                    "Great software customization"
+                ],
+                cons: [
+                    "Only available in wired version",
+                    "Limited color options",
+                    "Software could be more intuitive"
+                ],
+                specs: {
+                    "Sensor": "PixArt PAW3395",
+                    "DPI": "26,000",
+                    "Polling Rate": "8000Hz",
+                    "Weight": "58g",
+                    "Buttons": "6",
+                    "Connection": "Wired USB-C"
+                }
+            },
+            "razer-deathadder-v3-pro": {
+                name: "Razer DeathAdder V3 Pro",
+                brand: "Razer",
+                price: 149.99,
+                rating: 4.5,
+                category: "Gaming Mouse",
+                icon: "🖱️",
+                image: "razerviperv3pro.jpeg",
+                videoUrl: "https://youtube.com/watch?v=example2",
+                quickVerdict: "The DeathAdder V3 Pro is a solid wireless upgrade with excellent battery life and the classic DeathAdder shape. However, at $149, it faces stiff competition from newer alternatives.",
+                detailedReview: `
+                    <h4>Wireless Performance</h4>
+                    <p>Razer's HyperSpeed wireless technology works flawlessly with zero noticeable lag. Battery life is impressive, lasting well over 70 hours of continuous gaming.</p>
+                    
+                    <h4>Ergonomics & Comfort</h4>
+                    <p>The classic DeathAdder shape remains one of the most comfortable for palm grip users. The updated materials feel premium and provide good grip.</p>
+                    
+                    <h4>Competition Concerns</h4>
+                    <p>While this is a good mouse, the market has become incredibly competitive. For the same price, you can get mice with higher polling rates or better value propositions.</p>
+                `,
+                pros: [
+                    "Excellent wireless performance",
+                    "Outstanding battery life",
+                    "Comfortable classic shape",
+                    "Premium build materials",
+                    "Good software ecosystem"
+                ],
+                cons: [
+                    "Expensive for what it offers",
+                    "Only 1000Hz polling rate",
+                    "Heavy compared to competitors",
+                    "Limited customization options"
+                ],
+                specs: {
+                    "Sensor": "Razer Focus Pro 30K",
+                    "DPI": "30,000",
+                    "Polling Rate": "1000Hz",
+                    "Weight": "63g",
+                    "Buttons": "8",
+                    "Connection": "Wireless 2.4GHz"
+                }
+            },
+            "logitech-g-pro-x-superlight": {
+                name: "Logitech G Pro X Superlight",
+                brand: "Logitech",
+                price: 149.99,
+                rating: 4.9,
+                category: "Gaming Mouse",
+                icon: "🖱️",
+                image: "logitechprox.jpeg",
+                videoUrl: "https://youtube.com/watch?v=example3",
+                quickVerdict: "Still one of the best wireless gaming mice you can buy. The Superlight delivers on every front - performance, weight, and reliability. A safe choice for any competitive gamer.",
+                detailedReview: `
+                    <h4>Weight & Design</h4>
+                    <p>At just 63g, this mouse feels incredibly light while maintaining structural integrity. The ambidextrous design works for most grip styles.</p>
+                    
+                    <h4>Performance Excellence</h4>
+                    <p>The HERO sensor is among the best we've tested, with perfect tracking and zero issues across all surfaces we tried.</p>
+                    
+                    <h4>Proven Track Record</h4>
+                    <p>This mouse has been the choice of professional esports players for years, and for good reason. It just works, reliably, every time.</p>
+                `,
+                pros: [
+                    "Ultra-lightweight design",
+                    "Flawless sensor performance",
+                    "Excellent wireless reliability",
+                    "Proven in professional esports",
+                    "Great battery life",
+                    "Ambidextrous design"
+                ],
+                cons: [
+                    "Expensive price point",
+                    "Limited customization",
+                    "No RGB lighting",
+                    "Only 1000Hz polling rate"
+                ],
+                specs: {
+                    "Sensor": "HERO 25K",
+                    "DPI": "25,600",
+                    "Polling Rate": "1000Hz",
+                    "Weight": "63g",
+                    "Buttons": "5",
+                    "Connection": "Wireless LIGHTSPEED"
+                }
+            },
+            "wooting-60he": {
+                name: "Wooting 60HE",
+                brand: "Wooting",
+                price: 174.99,
+                rating: 4.6,
+                category: "Gaming Keyboard",
+                icon: "⌨️",
+                image: "wooting60he.jpeg",
+                videoUrl: "https://youtube.com/watch?v=example4",
+                quickVerdict: "The Wooting 60HE is revolutionary technology in a compact package. The analog input and rapid trigger features give you a real competitive advantage, but the learning curve and price might not be for everyone.",
+                detailedReview: `
+                    <h4>Revolutionary Technology</h4>
+                    <p>The Hall Effect switches with analog input are genuinely game-changing. Being able to control movement speed based on keypress depth opens up new possibilities in gaming.</p>
+                    
+                    <h4>Competitive Features</h4>
+                    <p>Rapid trigger and customizable actuation points give you a real edge in competitive games. The responsiveness is unmatched by traditional mechanical switches.</p>
+                    
+                    <h4>Learning Curve</h4>
+                    <p>It takes time to fully utilize all features. The software has a learning curve, but once mastered, offers incredible customization.</p>
+                `,
+                pros: [
+                    "Revolutionary analog input",
+                    "Rapid trigger technology",
+                    "Adjustable actuation points",
+                    "Excellent build quality",
+                    "Innovative software features",
+                    "Competitive advantage in games"
+                ],
+                cons: [
+                    "Steep learning curve",
+                    "Expensive for a 60% keyboard",
+                    "Complex software interface",
+                    "Limited keycap compatibility"
+                ],
+                specs: {
+                    "Switch Type": "Hall Effect Magnetic",
+                    "Layout": "60% Compact",
+                    "Actuation": "0.1-4.0mm adjustable",
+                    "Polling Rate": "1000Hz",
+                    "Backlighting": "Per-key RGB",
+                    "Connection": "Wired USB-C"
+                }
+            },
+            "zowie-xl2540k-240hz": {
+                name: "ZOWIE XL2540K 240Hz",
+                brand: "ZOWIE",
+                price: 289.99,
+                rating: 4.8,
+                category: "Gaming Monitor",
+                icon: "🖥️",
+                image: "zowie240hz.jpg",
+                videoUrl: "https://youtube.com/watch?v=example5",
+                quickVerdict: "The XL2540K is the gold standard for competitive FPS gaming. While it lacks fancy features, it excels where it matters most - performance, responsiveness, and competitive advantages.",
+                detailedReview: `
+                    <h4>Competitive Gaming Excellence</h4>
+                    <p>This monitor is built specifically for competitive FPS games. The DyAc+ technology genuinely reduces motion blur, making it easier to track targets during fast movements.</p>
+                    
+                    <h4>No-Frills Approach</h4>
+                    <p>ZOWIE focuses purely on performance over aesthetics. No RGB, no fancy stand, just pure gaming performance.</p>
+                    
+                    <h4>Professional Choice</h4>
+                    <p>There's a reason this monitor is used in major esports tournaments. It prioritizes function over form perfectly.</p>
+                `,
+                pros: [
+                    "Excellent motion clarity",
+                    "DyAc+ technology works",
+                    "Proven in professional esports",
+                    "Consistent performance",
+                    "Tournament-ready features",
+                    "Reliable build quality"
+                ],
+                cons: [
+                    "Expensive for 1080p",
+                    "No HDR or advanced features",
+                    "Basic stand functionality",
+                    "Limited connectivity options"
+                ],
+                specs: {
+                    "Panel Size": "24.5 inches",
+                    "Resolution": "1920x1080",
+                    "Refresh Rate": "240Hz",
+                    "Response Time": "0.5ms",
+                    "Panel Type": "TN",
+                    "Connectivity": "HDMI, DisplayPort, DVI-D"
+                }
+            },
+            "zowie-xl2566k-360hz": {
+                name: "ZOWIE XL2566K 360Hz",
+                brand: "ZOWIE",
+                price: 599.99,
+                rating: 4.7,
+                category: "Gaming Monitor",
+                icon: "🖥️",
+                image: "zowie360hz.avif",
+                videoUrl: "https://youtube.com/watch?v=example6",
+                quickVerdict: "The ultimate competitive gaming monitor. The 360Hz refresh rate provides the smoothest gaming experience possible, but you'll need a high-end PC to take full advantage. Worth it for serious competitive players.",
+                detailedReview: `
+                    <h4>360Hz Performance</h4>
+                    <p>The difference between 240Hz and 360Hz is subtle but real. In competitive scenarios, every frame matters, and this monitor delivers the absolute lowest input lag possible.</p>
+                    
+                    <h4>Premium Price, Premium Performance</h4>
+                    <p>At $600, this isn't for casual gamers. But if you're serious about competitive gaming and have the PC to drive it, the performance is unmatched.</p>
+                    
+                    <h4>Future-Proofing</h4>
+                    <p>As games become more optimized and PCs more powerful, having 360Hz capability ensures you're ready for the future of competitive gaming.</p>
+                `,
+                pros: [
+                    "Unmatched 360Hz smoothness",
+                    "Lowest possible input lag",
+                    "Professional esports ready",
+                    "Advanced DyAc+ technology",
+                    "Future-proof refresh rate",
+                    "Tournament proven"
+                ],
+                cons: [
+                    "Very expensive",
+                    "Requires high-end PC",
+                    "Still 1080p resolution",
+                    "Overkill for casual gaming"
+                ],
+                specs: {
+                    "Panel Size": "24.5 inches",
+                    "Resolution": "1920x1080",
+                    "Refresh Rate": "360Hz",
+                    "Response Time": "0.5ms",
+                    "Panel Type": "Fast TN",
+                    "Connectivity": "HDMI 2.0, DisplayPort 1.4"
+                }
+            }
+        };
+
+        // Get product ID from URL
+        function getProductFromUrl() {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get('product');
+        }
+
+        // Load and display product data
+        function loadProductInfo() {
+            const productId = getProductFromUrl();
+            
+            if (!productId || !reviewDatabase[productId]) {
+                displayErrorState();
+                return;
+            }
+
+            const product = reviewDatabase[productId];
+            updateProductDisplay(product);
+            updatePageTitle(product.name);
+        }
+
+        function displayErrorState() {
+            document.getElementById('productNameDisplay').textContent = 'Review Not Found';
+            document.getElementById('productMaker').textContent = 'Unknown';
+            document.getElementById('productPriceDisplay').textContent = '$0.00';
+            document.getElementById('summaryVerdictText').textContent = 'Sorry, we could not find this review.';
+        }
+
+        function updateProductDisplay(product) {
+            // Basic product info
+            document.getElementById('productNameDisplay').textContent = product.name;
+            document.getElementById('productMaker').textContent = product.brand;
+            document.getElementById('productPriceDisplay').textContent = `${product.price}`;
+            document.getElementById('productType').textContent = product.category;
+            document.getElementById('productRatingDisplay').textContent = `${product.rating}/5`;
+            document.getElementById('summaryVerdictText').textContent = product.quickVerdict;
+            document.getElementById('fullReviewText').innerHTML = product.detailedReview;
+            
+            // Star rating display
+            const starCount = Math.floor(product.rating);
+            const emptyStars = 5 - starCount;
+            document.getElementById('productStarDisplay').textContent = '★'.repeat(starCount) + '☆'.repeat(emptyStars);
+            
+            // Video link
+            document.getElementById('videoReviewLink').href = product.videoUrl;
+            
+            // Product image or icon
+            const imageContainer = document.getElementById('productImageDisplay');
+            const iconDisplay = document.getElementById('productIconDisplay');
+            
+            if (product.image) {
+                imageContainer.innerHTML = `<img src="${product.image}" alt="${product.name}" loading="lazy">`;
+            } else {
+                iconDisplay.textContent = product.icon;
+            }
+            
+            // Pros and cons lists
+            updateProsCons(product.pros, product.cons);
+            
+            // Technical specifications
+            updateSpecifications(product.specs);
+        }
+
+        function updateProsCons(pros, cons) {
+            const prosList = document.getElementById('prosListDisplay');
+            const consList = document.getElementById('consListDisplay');
+            
+            prosList.innerHTML = '';
+            pros.forEach(pro => {
+                const listItem = document.createElement('li');
+                listItem.textContent = pro;
+                prosList.appendChild(listItem);
+            });
+            
+            consList.innerHTML = '';
+            cons.forEach(con => {
+                const listItem = document.createElement('li');
+                listItem.textContent = con;
+                consList.appendChild(listItem);
+            });
+        }
+
+        function updateSpecifications(specs) {
+            const specsContainer = document.getElementById('specificationsDisplay');
+            specsContainer.innerHTML = '';
+            
+            Object.entries(specs).forEach(([key, value]) => {
+                const specRow = document.createElement('div');
+                specRow.className = 'spec-row';
+                specRow.innerHTML = `
+                    <span class="spec-name">${key}</span>
+                    <span class="spec-detail">${value}</span>
+                `;
+                specsContainer.appendChild(specRow);
+            });
+        }
+
+        function updatePageTitle(productName) {
+            document.title = `DoubleTapTech - ${productName} Review`;
+        }
+
+        // Tab switching functionality
+        function setupTabSwitching() {
+            const tabButtons = document.querySelectorAll('.tab-button');
+            const tabSections = document.querySelectorAll('.tab-section');
+
+            tabButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    // Remove active state from all tabs
+                    tabButtons.forEach(btn => btn.classList.remove('is-active'));
+                    tabSections.forEach(section => section.classList.remove('is-active'));
+
+                    // Activate clicked tab
+                    button.classList.add('is-active');
+                    const targetSection = document.getElementById(button.dataset.tab);
+                    if (targetSection) {
+                        targetSection.classList.add('is-active');
+                    }
+                });
+            });
+        }
+
+        // Initialize page when DOM is loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            loadProductInfo();
+            setupTabSwitching();
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DoubleTapTech - Gaming Gear Reviews</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        /* Base styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background-color: #0a0e13;
+            color: #ffffff;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Header - matches index.html */
+        .main-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1rem 2rem;
+            background-color: rgba(10, 14, 19, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .site-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-decoration: none;
+            transition: transform 0.2s ease;
+        }
+
+        .site-logo:hover {
+            transform: scale(1.02);
+        }
+
+        .logo-symbol {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, #00d4ff, #0099cc);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            font-size: 1.3rem;
+        }
+
+        .logo-name {
+            background: linear-gradient(135deg, #00d4ff, #0099cc);
+            padding: 6px 14px;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 0.95rem;
+            color: white;
+        }
+
+        .header-search {
+            flex: 1;
+            max-width: 450px;
+            margin: 0 3rem;
+            position: relative;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 0.875rem 1rem 0.875rem 3rem;
+            background-color: rgba(30, 35, 42, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 10px;
+            color: #ffffff;
+            font-size: 0.9rem;
+            font-family: inherit;
+            transition: all 0.3s ease;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: rgba(0, 212, 255, 0.5);
+            background-color: rgba(30, 35, 42, 0.95);
+        }
+
+        .search-input::placeholder {
+            color: #6b7280;
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #6b7280;
+            font-size: 1.1rem;
+        }
+
+        .main-nav {
+            display: flex;
+            align-items: center;
+            gap: 2.5rem;
+        }
+
+        .nav-link {
+            color: #9ca3af;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-link:hover {
+            color: #00d4ff;
+        }
+
+        .nav-link.current {
+            color: #00d4ff;
+        }
+
+        .nav-link.current::after {
+            content: '';
+            position: absolute;
+            bottom: -1.5rem;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #00d4ff, #0099cc);
+            border-radius: 1px;
+        }
+
+        /* Main content */
+        .page-wrapper {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .page-intro {
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+
+        .page-heading {
+            font-size: 3.2rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #7c3aed, #00d4ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .page-tagline {
+            color: #9ca3af;
+            font-size: 1.15rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Filter and sort controls */
+        .controls-section {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2.5rem;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .category-filters {
+            display: flex;
+            gap: 0.75rem;
+            background-color: rgba(26, 31, 38, 0.8);
+            padding: 0.5rem;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .filter-button {
+            padding: 0.75rem 1.5rem;
+            background: transparent;
+            border: none;
+            color: #9ca3af;
+            font-weight: 500;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: inherit;
+            font-size: 0.9rem;
+        }
+
+        .filter-button:hover {
+            color: #00d4ff;
+            background-color: rgba(0, 212, 255, 0.1);
+        }
+
+        .filter-button.is-active {
+            background: linear-gradient(135deg, #00d4ff, #0099cc);
+            color: white;
+        }
+
+        .sort-controls {
+            position: relative;
+        }
+
+        .sort-dropdown {
+            padding: 0.75rem 1.5rem;
+            background-color: rgba(26, 31, 38, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            color: #ffffff;
+            font-weight: 500;
+            cursor: pointer;
+            font-family: inherit;
+            font-size: 0.9rem;
+        }
+
+        /* Product grid layout */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .product-item {
+            background: rgba(26, 31, 38, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .product-item:hover {
+            transform: translateY(-8px);
+            border-color: rgba(0, 212, 255, 0.4);
+            box-shadow: 0 25px 50px rgba(0, 212, 255, 0.15);
+        }
+
+        .product-thumbnail {
+            width: 100%;
+            height: 220px;
+            background: linear-gradient(135deg, #1a1f26, #2d3748);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .product-thumbnail img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .product-details {
+            padding: 1.5rem;
+        }
+
+        .product-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: #ffffff;
+        }
+
+        .product-manufacturer {
+            color: #9ca3af;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .product-pricing {
+            margin-bottom: 1rem;
+        }
+
+        .price-current {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #00d4ff, #0099cc);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .product-rating-section {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .rating-display {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .rating-stars {
+            color: #ffd93d;
+            font-size: 1.1rem;
+        }
+
+        .rating-number {
+            color: #9ca3af;
+            font-size: 0.9rem;
+        }
+
+        .read-review-btn {
+            width: 100%;
+            padding: 0.875rem;
+            background: linear-gradient(135deg, #00d4ff, #0099cc);
+            border: none;
+            border-radius: 8px;
+            color: white;
+            font-weight: 600;
+            font-family: inherit;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            font-size: 0.95rem;
+        }
+
+        .product-item:hover .read-review-btn {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0, 212, 255, 0.3);
+        }
+
+        /* Load more button */
+        .load-more-section {
+            text-align: center;
+            margin-top: 3rem;
+        }
+
+        .load-more-btn {
+            padding: 1rem 2rem;
+            background: rgba(26, 31, 38, 0.8);
+            border: 2px solid rgba(0, 212, 255, 0.3);
+            border-radius: 12px;
+            color: #00d4ff;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: inherit;
+            font-size: 0.95rem;
+        }
+
+        .load-more-btn:hover {
+            background: rgba(0, 212, 255, 0.1);
+            border-color: #00d4ff;
+        }
+
+        /* Mobile responsiveness */
+        @media (max-width: 768px) {
+            .header-search {
+                margin: 0 1rem;
+            }
+
+            .main-nav {
+                display: none;
+            }
+
+            .page-heading {
+                font-size: 2.5rem;
+            }
+
+            .controls-section {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .category-filters {
+                justify-content: center;
+            }
+
+            .products-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .main-header {
+                padding: 1rem;
+            }
+            
+            .page-wrapper {
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Main header navigation -->
+    <header class="main-header">
+        <a href="index.html" class="site-logo">
+            <div class="logo-symbol">⚡</div>
+            <div class="logo-name">DoubleTapTech</div>
+        </a>
+        
+        <div class="header-search">
+            <div class="search-icon">🔍</div>
+            <input type="text" class="search-input" placeholder="Search for gaming gear..." id="headerSearch">
+        </div>
+        
+        <nav class="main-nav">
+            <a href="reviewed-products.html" class="nav-link current">Reviews</a>
+            <a href="AI-finder.html" class="nav-link">AI Finder</a>
+            <a href="meet-the-team.html" class="nav-link">Meet the Team</a>
+        </nav>
+    </header>
+
+    <!-- Main page content -->
+    <main class="page-wrapper">
+        <!-- Page introduction -->
+        <section class="page-intro">
+            <h1 class="page-heading">Our Reviews</h1>
+            <p class="page-tagline">Products we've reviewed and tested on our YouTube channel.</p>
+        </section>
+
+        <!-- Filter and sort controls -->
+        <section class="controls-section">
+            <div class="category-filters">
+                <button class="filter-button is-active" data-category="all">All</button>
+                <button class="filter-button" data-category="mice">Mice</button>
+                <button class="filter-button" data-category="keyboards">Keyboards</button>
+                <button class="filter-button" data-category="headsets">Headsets</button>
+                <button class="filter-button" data-category="monitors">Monitors</button>
+            </div>
+            
+            <div class="sort-controls">
+                <select class="sort-dropdown" id="sortSelect">
+                    <option value="rating">Our Rating</option>
+                    <option value="price-low">Price: Low to High</option>
+                    <option value="price-high">Price: High to Low</option>
+                    <option value="newest">Newest Reviews</option>
+                </select>
+            </div>
+        </section>
+
+        <!-- Products grid -->
+        <section class="products-grid" id="productsContainer">
+            <!-- Product cards will be generated by JavaScript -->
+        </section>
+
+        <!-- Load more button -->
+        <section class="load-more-section">
+            <button class="load-more-btn" id="loadMoreButton">Load More Reviews</button>
+        </section>
+    </main>
+
+    <script>
+        // Product data with all the products
+        const productDatabase = [
+            {
+                id: "op1-8k-v2",
+                name: "OP1 8k v2",
+                brand: "Endgame Gear",
+                price: 89.99,
+                rating: 5.0,
+                category: "mice",
+                icon: "🖱️",
+                image: "op18k.jpeg",
+                dateAdded: "2024-01-15"
+            },
+            {
+                id: "razer-deathadder-v3-pro",
+                name: "Razer DeathAdder V3 Pro",
+                brand: "Razer",
+                price: 149.99,
+                rating: 4.5,
+                category: "mice",
+                icon: "🖱️",
+                image: "razerviperv3pro.jpeg",
+                dateAdded: "2024-01-10"
+            },
+            {
+                id: "logitech-g-pro-x-superlight",
+                name: "Logitech G Pro X Superlight",
+                brand: "Logitech",
+                price: 149.99,
+                rating: 4.9,
+                category: "mice",
+                icon: "🖱️",
+                image: "logitechprox.jpeg",
+                dateAdded: "2024-01-05"
+            },
+            {
+                id: "wooting-60he",
+                name: "Wooting 60HE",
+                brand: "Wooting",
+                price: 174.99,
+                rating: 4.6,
+                category: "keyboards",
+                icon: "⌨️",
+                image: "wooting60he.jpeg",
+                dateAdded: "2023-12-20"
+            },
+            {
+                id: "zowie-xl2540k-240hz",
+                name: "ZOWIE XL2540K 240Hz",
+                brand: "ZOWIE",
+                price: 289.99,
+                rating: 4.8,
+                category: "monitors",
+                icon: "🖥️",
+                image: "zowie240hz.jpg",
+                dateAdded: "2023-12-15"
+            },
+            {
+                id: "zowie-xl2566k-360hz",
+                name: "ZOWIE XL2566K 360Hz",
+                brand: "ZOWIE",
+                price: 599.99,
+                rating: 4.7,
+                category: "monitors",
+                icon: "🖥️",
+                image: "zowie360hz.avif",
+                dateAdded: "2023-12-10"
+            }
+        ];
+
+        // State management
+        let currentFilter = 'all';
+        let currentSort = 'rating';
+        let productsShown = 0;
+        const productsPerLoad = 6;
+
+        // Build product card HTML
+        function buildProductCard(product) {
+            const starRating = generateStarRating(product.rating);
+            
+            return `
+                <article class="product-item" data-category="${product.category}" onclick="openProductReview('${product.id}')">
+                    <div class="product-thumbnail">
+                        ${product.image ? 
+                            `<img src="${product.image}" alt="${product.name}" loading="lazy">` : 
+                            `<span style="font-size: 4rem;">${product.icon}</span>`
+                        }
+                    </div>
+                    <div class="product-details">
+                        <h2 class="product-title">${product.name}</h2>
+                        <p class="product-manufacturer">${product.brand}</p>
+                        <div class="product-pricing">
+                            <span class="price-current">${product.price}</span>
+                        </div>
+                        <div class="product-rating-section">
+                            <div class="rating-display">
+                                <span class="rating-stars">${starRating}</span>
+                                <span class="rating-number">${product.rating}/5</span>
+                            </div>
+                        </div>
+                        <button class="read-review-btn">Read Our Review</button>
+                    </div>
+                </article>
+            `;
+        }
+
+        // Generate star rating display
+        function generateStarRating(rating) {
+            const fullStars = Math.floor(rating);
+            const emptyStars = 5 - fullStars;
+            return '★'.repeat(fullStars) + '☆'.repeat(emptyStars);
+        }
+
+        // Filter and sort products
+        function getFilteredProducts() {
+            let filteredProducts = [...productDatabase];
+            
+            // Apply category filter
+            if (currentFilter !== 'all') {
+                filteredProducts = filteredProducts.filter(product => 
+                    product.category === currentFilter
+                );
+            }
+
+            // Apply sorting
+            filteredProducts.sort((a, b) => {
+                switch (currentSort) {
+                    case 'price-low':
+                        return a.price - b.price;
+                    case 'price-high':
+                        return b.price - a.price;
+                    case 'rating':
+                        return b.rating - a.rating;
+                    case 'newest':
+                        return new Date(b.dateAdded) - new Date(a.dateAdded);
+                    default:
+                        return 0;
+                }
+            });
+
+            return filteredProducts;
+        }
+
+        // Render products to the grid
+        function renderProducts(loadMore = false) {
+            const container = document.getElementById('productsContainer');
+            const filteredProducts = getFilteredProducts();
+            
+            if (!loadMore) {
+                container.innerHTML = '';
+                productsShown = 0;
+            }
+
+            const productsToShow = filteredProducts.slice(productsShown, productsShown + productsPerLoad);
+            
+            productsToShow.forEach(product => {
+                container.insertAdjacentHTML('beforeend', buildProductCard(product));
+            });
+
+            productsShown += productsToShow.length;
+
+            // Show/hide load more button
+            const loadMoreBtn = document.getElementById('loadMoreButton');
+            loadMoreBtn.style.display = productsShown >= filteredProducts.length ? 'none' : 'block';
+        }
+
+        // Navigate to product detail page
+        function openProductReview(productId) {
+            window.location.href = `product-detail.html?product=${productId}`;
+        }
+
+        // Search functionality
+        function performProductSearch(searchTerm) {
+            const products = document.querySelectorAll('.product-item');
+            const term = searchTerm.toLowerCase();
+            
+            products.forEach(product => {
+                const title = product.querySelector('.product-title').textContent.toLowerCase();
+                const brand = product.querySelector('.product-manufacturer').textContent.toLowerCase();
+                
+                if (title.includes(term) || brand.includes(term)) {
+                    product.style.display = 'block';
+                } else {
+                    product.style.display = 'none';
+                }
+            });
+        }
+
+        // Handle URL search parameter
+        function handleUrlSearch() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const searchTerm = urlParams.get('search');
+            if (searchTerm) {
+                document.getElementById('headerSearch').value = searchTerm;
+                renderProducts();
+                performProductSearch(searchTerm);
+            }
+        }
+
+        // Event listeners
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize the page
+            renderProducts();
+            handleUrlSearch();
+
+            // Category filter buttons
+            document.querySelectorAll('.filter-button').forEach(button => {
+                button.addEventListener('click', function() {
+                    // Update active state
+                    document.querySelectorAll('.filter-button').forEach(btn => 
+                        btn.classList.remove('is-active')
+                    );
+                    this.classList.add('is-active');
+                    
+                    // Update filter and re-render
+                    currentFilter = this.dataset.category;
+                    renderProducts();
+                });
+            });
+
+            // Sort dropdown
+            document.getElementById('sortSelect').addEventListener('change', function() {
+                currentSort = this.value;
+                renderProducts();
+            });
+
+            // Load more button
+            document.getElementById('loadMoreButton').addEventListener('click', function() {
+                renderProducts(true);
+            });
+
+            // Search functionality
+            document.getElementById('headerSearch').addEventListener('input', function() {
+                performProductSearch(this.value);
+            });
+
+            // Search on enter key
+            document.getElementById('headerSearch').addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    performProductSearch(this.value);
+                }
+            });
+        });
+    </script>
+</body>
+</html>

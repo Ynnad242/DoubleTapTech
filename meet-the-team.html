@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DoubleTapTech - Meet the Team</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        /* Base styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background-color: #0a0e13;
+            color: #ffffff;
+            line-height: 1.6;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        /* Header - consistent with other pages */
+        .main-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1rem 2rem;
+            background-color: rgba(10, 14, 19, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .site-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-decoration: none;
+            transition: transform 0.2s ease;
+        }
+
+        .site-logo:hover {
+            transform: scale(1.02);
+        }
+
+        .logo-symbol {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, #00d4ff, #0099cc);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            font-size: 1.3rem;
+        }
+
+        .logo-name {
+            background: linear-gradient(135deg, #00d4ff, #0099cc);
+            padding: 6px 14px;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 0.95rem;
+            color: white;
+        }
+
+        .header-search {
+            flex: 1;
+            max-width: 450px;
+            margin: 0 3rem;
+            position: relative;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 0.875rem 1rem 0.875rem 3rem;
+            background-color: rgba(30, 35, 42, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 10px;
+            color: #ffffff;
+            font-size: 0.9rem;
+            font-family: inherit;
+            transition: all 0.3s ease;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: rgba(0, 212, 255, 0.5);
+            background-color: rgba(30, 35, 42, 0.95);
+        }
+
+        .search-input::placeholder {
+            color: #6b7280;
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #6b7280;
+            font-size: 1.1rem;
+        }
+
+        .main-nav {
+            display: flex;
+            align-items: center;
+            gap: 2.5rem;
+        }
+
+        .nav-link {
+            color: #9ca3af;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-link:hover {
+            color: #00d4ff;
+        }
+
+        .nav-link.current {
+            color: #00d4ff;
+        }
+
+        .nav-link.current::after {
+            content: '';
+            position: absolute;
+            bottom: -1.5rem;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #00d4ff, #0099cc);
+            border-radius: 1px;
+        }
+
+        /* Main content */
+        .team-section {
+            padding: 4rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-title {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, #7c3aed, #00d4ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .section-subtitle {
+            font-size: 1.3rem;
+            color: #9ca3af;
+            max-width: 600px;
+            margin: 0 auto;
+            animation: fadeInUp 0.8s ease-out 0.2s both;
+        }
+
+        /* Team grid */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .team-member {
+            background: rgba(26, 31, 38, 0.6);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            padding: 2.5rem;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            animation: fadeInUp 0.8s ease-out both;
+        }
+
+        .team-member:nth-child(1) {
+            animation-delay: 0.3s;
+        }
+
+        .team-member:nth-child(2) {
+            animation-delay: 0.5s;
+        }
+
+        .team-member:nth-child(3) {
+            animation-delay: 0.7s;
+        }
+
+        .team-member:hover {
+            transform: translateY(-8px);
+            background: rgba(26, 31, 38, 0.8);
+            border-color: rgba(0, 212, 255, 0.3);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+        }
+
+        .team-member::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #00d4ff, transparent);
+            transition: left 0.6s ease;
+        }
+
+        .team-member:hover::before {
+            left: 100%;
+        }
+
+        .member-photo {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            margin: 0 auto 1.5rem;
+            background: linear-gradient(135deg, #1a1f26, #2d3748);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            border: 3px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .member-photo:hover {
+            border-color: rgba(0, 212, 255, 0.5);
+            transform: scale(1.05);
+        }
+
+        .member-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+
+        .member-name {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: #ffffff;
+        }
+
+        .member-role {
+            font-size: 1.1rem;
+            color: #00d4ff;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .member-bio {
+            color: #9ca3af;
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+            font-size: 0.95rem;
+        }
+
+        .member-specialties {
+            margin-bottom: 1.5rem;
+        }
+
+        .member-social {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        .social-link {
+            width: 40px;
+            height: 40px;
+            background: rgba(30, 35, 42, 0.8);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #9ca3af;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .social-link:hover {
+            background: rgba(0, 212, 255, 0.1);
+            color: #00d4ff;
+            border-color: rgba(0, 212, 255, 0.3);
+            transform: translateY(-2px);
+        }
+
+        /* Join section */
+        .join-section {
+            background: rgba(26, 31, 38, 0.4);
+            border-radius: 20px;
+            padding: 3rem;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            margin-top: 3rem;
+            animation: fadeInUp 0.8s ease-out 0.9s both;
+        }
+
+        .join-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #7c3aed, #00d4ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .join-description {
+            color: #9ca3af;
+            margin-bottom: 2rem;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-button {
+            background: linear-gradient(135deg, #7c3aed, #00d4ff);
+            color: white;
+            border: none;
+            padding: 1rem 2.5rem;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-family: inherit;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 35px rgba(124, 58, 237, 0.3);
+        }
+       
+        /* Animation keyframes */
+        @keyframes floatDecoration {
+            0%, 100% {
+                transform: translateY(0px) rotate(0deg);
+                opacity: 0.06;
+            }
+            33% {
+                transform: translateY(-20px) rotate(2deg);
+                opacity: 0.1;
+            }
+            66% {
+                transform: translateY(-10px) rotate(-1deg);
+                opacity: 0.08;
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Mobile responsiveness */
+        @media (max-width: 768px) {
+            .header-search {
+                margin: 0 1rem;
+            }
+
+            .main-nav {
+                display: none;
+            }
+
+            .team-section {
+                padding: 2rem 1rem;
+            }
+
+            .section-title {
+                font-size: 2.5rem;
+            }
+
+            .team-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .team-member {
+                padding: 2rem;
+            }
+
+            .join-section {
+                padding: 2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .main-header {
+                padding: 1rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .team-member {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Main header navigation -->
+    <header class="main-header">
+        <a href="index.html" class="site-logo">
+            <div class="logo-symbol">⚡</div>
+            <div class="logo-name">DoubleTapTech</div>
+        </a>
+        
+        <div class="header-search">
+            <div class="search-icon">🔍</div>
+            <input type="text" class="search-input" placeholder="Search for gaming gear...">
+        </div>
+        
+        <nav class="main-nav">
+            <a href="reviewed-products.html" class="nav-link">Reviews</a>
+            <a href="AI-finder.html" class="nav-link">AI Finder</a>
+            <a href="meet-the-team.html" class="nav-link current">Meet the Team</a>
+        </nav>
+    </header>
+
+    <!-- Team content -->
+    <main class="team-section">
+        <div class="section-header">
+            <h1 class="section-title">Meet the Team</h1>
+            <p class="section-subtitle">
+                The passionate gamers and tech enthusiasts behind DoubleTapTech, bringing you honest reviews and expert insights.
+            </p>
+        </div>
+
+        <div class="team-grid">
+            <!-- Team Member 1 Template -->
+            <div class="team-member">
+                <div class="member-photo">
+                    <img src="member1.jpg" alt="Team Member 1" onerror="this.style.display='none'; this.parentElement.innerHTML='👤';">
+                </div>
+                <h3 class="member-name">Danny Dang</h3>
+                <p class="member-role">Co-Creator</p>
+                <p class="member-bio">
+                    Danny is a Computer Science student and collegiate Valorant player at George Mason University. With a passion for esports and performance-driven technology, he explores the latest innovations to optimize gameplay and achieve peak results.
+                </p>
+                <div class="member-social">
+                    <a href="https://x.com/Ynnad242" class="social-link" title="Twitter">🐦</a>
+                    <a href="https://www.linkedin.com/in/danny-dang-42bab8360/" class="social-link" title="Linkedin">💼</a>
+                    <a href="https://www.instagram.com/dannydang_11/" class="social-link" title="Instagram">📷</a>
+                </div>
+            </div>
+
+            <!-- Team Member 2 Template -->
+            <div class="team-member">
+                <div class="member-photo">
+                    <img src="4leclogo.jpg" alt="Team Member 2" onerror="this.style.display='none'; this.parentElement.innerHTML='👤';">
+                </div>
+                <h3 class="member-name">Alec McQuarrie</h3>
+                <p class="member-role">Co-Creator</p>
+                <p class="member-bio">
+                    Alec McQuarrie is a full-stack web developer and avid gamer who enjoys FPS and Souls-like games. Competitive by nature, he seeks the best performance from his gaming gear, including audio, peripherals, and PCs.
+                </p>
+                <div class="member-social">
+                    <a href="https://x.com/awesome4lec" class="social-link" title="Twitter">🐦</a>
+                    <a href="https://www.linkedin.com/in/alecmcquarrie/" class="social-link" title="Linkedin">💼</a>
+                    <a href="https://www.twitch.tv/thereal4lec" class="social-link" title="Twitch">🎮</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Search functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const searchInput = document.querySelector('.search-input');
+            searchInput.addEventListener('keypress', function(event) {
+                if (event.key === 'Enter') {
+                    const searchTerm = this.value.trim();
+                    if (searchTerm) {
+                        window.location.href = `reviewed-products.html?search=${encodeURIComponent(searchTerm)}`;
+                    }
+                }
+            });
+
+            // Add hover effects to team members
+            const teamMembers = document.querySelectorAll('.team-member');
+            teamMembers.forEach(member => {
+                member.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-8px) scale(1.02)';
+                });
+
+                member.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0) scale(1)';
+                });
+            });
+        });
+
+        // Intersection Observer for scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all team members for scroll animations
+        document.addEventListener('DOMContentLoaded', function() {
+            const teamMembers = document.querySelectorAll('.team-member');
+            teamMembers.forEach(member => {
+                observer.observe(member);
+            });
+        });
+    </script>
+</body>
+</html>
