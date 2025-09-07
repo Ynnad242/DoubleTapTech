@@ -296,36 +296,6 @@
             box-shadow: 0 10px 30px rgba(0, 212, 255, 0.2);
         }
 
-        /* Floating decorative elements */
-        .floating-decoration {
-            position: absolute;
-            opacity: 0.06;
-            animation: floatDecoration 10s ease-in-out infinite;
-            pointer-events: none;
-            z-index: 1;
-        }
-
-        .floating-decoration:nth-child(1) {
-            top: 12%;
-            left: 8%;
-            animation-delay: 0s;
-            font-size: 3rem;
-        }
-
-        .floating-decoration:nth-child(2) {
-            top: 65%;
-            right: 12%;
-            animation-delay: 4s;
-            font-size: 2.5rem;
-        }
-
-        .floating-decoration:nth-child(3) {
-            bottom: 15%;
-            left: 15%;
-            animation-delay: 7s;
-            font-size: 3.5rem;
-        }
-
         /* Animation keyframes */
         @keyframes robotPulse {
             0%, 100% {
@@ -428,10 +398,6 @@
     </style>
 </head>
 <body>
-    <!-- Floating decorative elements -->
-    <div class="floating-decoration">🤖</div>
-    <div class="floating-decoration">⚡</div>
-    <div class="floating-decoration">🔍</div>
 
     <!-- Main header navigation -->
     <header class="main-header">
