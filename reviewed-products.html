@@ -23,7 +23,120 @@
             overflow-x: hidden;
         }
 
-        /* Header - matches index.html */
+        /* === UNIFIED ANIMATION SYSTEM === */
+        
+        /* Fade in from bottom with stagger support */
+        .animate-fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+
+        /* Staggered delays for multiple elements */
+        .animate-fade-in.delay-1 { animation-delay: 0.1s; }
+        .animate-fade-in.delay-2 { animation-delay: 0.2s; }
+        .animate-fade-in.delay-3 { animation-delay: 0.3s; }
+        .animate-fade-in.delay-4 { animation-delay: 0.4s; }
+        .animate-fade-in.delay-5 { animation-delay: 0.5s; }
+        .animate-fade-in.delay-6 { animation-delay: 0.6s; }
+
+        /* Slide in from left (for accent lines, etc.) */
+        .animate-slide-left {
+            opacity: 0;
+            transform: translateX(-50px);
+            animation: slideInFromLeft 0.8s ease-out forwards;
+        }
+
+        /* Scale in animation for cards/boxes */
+        .animate-scale-in {
+            opacity: 0;
+            transform: scale(0.95) translateY(20px);
+            animation: scaleInUp 0.6s ease-out forwards;
+        }
+
+        /* Hover lift effect for interactive elements */
+        .hover-lift {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .hover-lift:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 25px 50px rgba(0, 212, 255, 0.15);
+        }
+
+        /* JavaScript controlled animations */
+        .js-animate {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .js-animate.animate-in {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .js-scale-animate {
+            opacity: 0;
+            transform: scale(0.95) translateY(20px);
+            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .js-scale-animate.animate-in {
+            opacity: 1;
+            transform: scale(1) translateY(0);
+        }
+
+        /* Animation keyframes */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInFromLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes scaleInUp {
+            from {
+                opacity: 0;
+                transform: scale(0.95) translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+
+        @keyframes floatDecoration {
+            0%, 100% {
+                transform: translateY(0px) rotate(0deg);
+                opacity: 0.06;
+            }
+            33% {
+                transform: translateY(-25px) rotate(2deg);
+                opacity: 0.1;
+            }
+            66% {
+                transform: translateY(-12px) rotate(-1deg);
+                opacity: 0.08;
+            }
+        }
+
+        /* Header - matches other pages */
         .main-header {
             display: flex;
             align-items: center;
@@ -148,11 +261,22 @@
             max-width: 1400px;
             margin: 0 auto;
             padding: 2rem;
+            position: relative;
         }
 
         .page-intro {
             margin-bottom: 3rem;
             text-align: center;
+            position: relative;
+            z-index: 10;
+        }
+
+        .hero-accent-line {
+            width: 160px;
+            height: 4px;
+            background: linear-gradient(90deg, #00d4ff, #0099cc);
+            border-radius: 2px;
+            margin: 0 auto 2rem;
         }
 
         .page-heading {
@@ -180,6 +304,8 @@
             margin-bottom: 2.5rem;
             gap: 1.5rem;
             flex-wrap: wrap;
+            position: relative;
+            z-index: 10;
         }
 
         .category-filters {
@@ -189,6 +315,7 @@
             padding: 0.5rem;
             border-radius: 12px;
             border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
         }
 
         .filter-button {
@@ -228,6 +355,7 @@
             cursor: pointer;
             font-family: inherit;
             font-size: 0.9rem;
+            backdrop-filter: blur(20px);
         }
 
         /* Product grid layout */
@@ -236,6 +364,8 @@
             grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
             gap: 2rem;
             margin-bottom: 3rem;
+            position: relative;
+            z-index: 10;
         }
 
         .product-item {
@@ -243,9 +373,10 @@
             border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: 16px;
             overflow: hidden;
-            transition: all 0.3s ease;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             position: relative;
             cursor: pointer;
+            backdrop-filter: blur(20px);
         }
 
         .product-item:hover {
@@ -348,6 +479,8 @@
         .load-more-section {
             text-align: center;
             margin-top: 3rem;
+            position: relative;
+            z-index: 10;
         }
 
         .load-more-btn {
@@ -361,11 +494,13 @@
             transition: all 0.3s ease;
             font-family: inherit;
             font-size: 0.95rem;
+            backdrop-filter: blur(20px);
         }
 
         .load-more-btn:hover {
             background: rgba(0, 212, 255, 0.1);
             border-color: #00d4ff;
+            transform: translateY(-2px);
         }
 
         /* Mobile responsiveness */
@@ -409,6 +544,7 @@
     </style>
 </head>
 <body>
+
     <!-- Main header navigation -->
     <header class="main-header">
         <a href="index.html" class="site-logo">
@@ -432,12 +568,13 @@
     <main class="page-wrapper">
         <!-- Page introduction -->
         <section class="page-intro">
-            <h1 class="page-heading">Our Reviews</h1>
-            <p class="page-tagline">Products we've reviewed and tested on our YouTube channel.</p>
+            <div class="hero-accent-line animate-slide-left"></div>
+            <h1 class="page-heading animate-fade-in delay-2">Our Reviews</h1>
+            <p class="page-tagline animate-fade-in delay-3">Products we've reviewed and tested on our YouTube channel.</p>
         </section>
 
         <!-- Filter and sort controls -->
-        <section class="controls-section">
+        <section class="controls-section animate-fade-in delay-4">
             <div class="category-filters">
                 <button class="filter-button is-active" data-category="all">All</button>
                 <button class="filter-button" data-category="mice">Mice</button>
@@ -463,7 +600,7 @@
 
         <!-- Load more button -->
         <section class="load-more-section">
-            <button class="load-more-btn" id="loadMoreButton">Load More Reviews</button>
+            <button class="load-more-btn js-animate" id="loadMoreButton">Load More Reviews</button>
         </section>
     </main>
 
@@ -544,12 +681,27 @@
         let productsShown = 0;
         const productsPerLoad = 6;
 
+        // Animation system - Intersection Observer for scroll-triggered animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-in');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
         // Build product card HTML
-        function buildProductCard(product) {
+        function buildProductCard(product, index) {
             const starRating = generateStarRating(product.rating);
             
             return `
-                <article class="product-item" data-category="${product.category}" onclick="openProductReview('${product.id}')">
+                <article class="product-item js-scale-animate hover-lift" data-category="${product.category}" onclick="openProductReview('${product.id}')" style="transition-delay: ${index * 0.1}s;">
                     <div class="product-thumbnail">
                         ${product.image ? 
                             `<img src="${product.image}" alt="${product.name}" loading="lazy">` : 
@@ -560,7 +712,7 @@
                         <h2 class="product-title">${product.name}</h2>
                         <p class="product-manufacturer">${product.brand}</p>
                         <div class="product-pricing">
-                            <span class="price-current">${product.price}</span>
+                            <span class="price-current">$${product.price}</span>
                         </div>
                         <div class="product-rating-section">
                             <div class="rating-display">
@@ -623,8 +775,14 @@
 
             const productsToShow = filteredProducts.slice(productsShown, productsShown + productsPerLoad);
             
-            productsToShow.forEach(product => {
-                container.insertAdjacentHTML('beforeend', buildProductCard(product));
+            productsToShow.forEach((product, index) => {
+                container.insertAdjacentHTML('beforeend', buildProductCard(product, index));
+            });
+
+            // Animate new products
+            const newProducts = container.querySelectorAll('.js-scale-animate:not(.animate-in)');
+            newProducts.forEach(product => {
+                observer.observe(product);
             });
 
             productsShown += productsToShow.length;
@@ -669,6 +827,11 @@
 
         // Event listeners
         document.addEventListener('DOMContentLoaded', function() {
+            // Initialize animations
+            document.querySelectorAll('.js-animate, .js-scale-animate').forEach(el => {
+                observer.observe(el);
+            });
+
             // Initialize the page
             renderProducts();
             handleUrlSearch();
@@ -708,6 +871,18 @@
             document.getElementById('headerSearch').addEventListener('keypress', function(e) {
                 if (e.key === 'Enter') {
                     performProductSearch(this.value);
+                }
+            });
+        });
+
+        // Performance optimization: Pause animations when page is not visible
+        document.addEventListener('visibilitychange', function() {
+            const floatingElements = document.querySelectorAll('.animate-float');
+            floatingElements.forEach(el => {
+                if (document.hidden) {
+                    el.style.animationPlayState = 'paused';
+                } else {
+                    el.style.animationPlayState = 'running';
                 }
             });
         });
