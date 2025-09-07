@@ -201,6 +201,10 @@
             box-shadow: 0 15px 35px rgba(255, 0, 0, 0.4);
         }
 
+        .video-review-link.hidden {
+            display: none;
+        }
+
         .product-summary {
             padding: 2rem 0;
         }
@@ -286,30 +290,6 @@
             background-clip: text;
         }
 
-        .summary-verdict {
-            background: rgba(26, 31, 38, 0.6);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 16px;
-            padding: 2rem;
-            margin-bottom: 2rem;
-        }
-
-        .verdict-heading {
-            color: #00d4ff;
-            font-weight: 700;
-            font-size: 1.2rem;
-            margin-bottom: 1rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .verdict-content {
-            color: #9ca3af;
-            line-height: 1.8;
-            font-size: 1.05rem;
-        }
-
         /* Review tabs section */
         .review-sections {
             margin-top: 4rem;
@@ -362,6 +342,8 @@
         .tab-section.is-active {
             display: block;
         }
+
+
 
         .pros-cons-layout {
             display: grid;
@@ -457,23 +439,6 @@
             color: #9ca3af;
         }
 
-        .full-review-content {
-            color: #9ca3af;
-            line-height: 1.8;
-            font-size: 1.1rem;
-        }
-
-        .full-review-content h4 {
-            color: #ffffff;
-            margin-top: 2rem;
-            margin-bottom: 1rem;
-            font-size: 1.3rem;
-        }
-
-        .full-review-content p {
-            margin-bottom: 1.5rem;
-        }
-
         /* Mobile responsiveness */
         @media (max-width: 968px) {
             .review-hero {
@@ -485,6 +450,7 @@
                 font-size: 2.5rem;
             }
 
+            .reviews-layout,
             .pros-cons-layout {
                 grid-template-columns: 1fr;
                 gap: 1rem;
@@ -547,7 +513,7 @@
                 <div class="product-image-container" id="productImageDisplay">
                     <span id="productIconDisplay">🖱️</span>
                 </div>
-                <a href="#" class="video-review-link" id="videoReviewLink">
+                <a href="#" class="video-review-link hidden" id="videoReviewLink">
                     🎬 Watch Our Full Review Here
                 </a>
             </div>
@@ -571,29 +537,22 @@
                     <div class="price-heading">Current Market Price</div>
                     <div class="price-amount" id="productPriceDisplay">$0.00</div>
                 </div>
-                
-                <div class="summary-verdict">
-                    <div class="verdict-heading">🎯 Quick Verdict</div>
-                    <p class="verdict-content" id="summaryVerdictText">
-                        Loading our quick take on this product...
-                    </p>
-                </div>
             </div>
         </section>
 
         <!-- Review sections with tabs -->
         <section class="review-sections">
             <div class="section-tabs">
-                <button class="tab-button is-active" data-tab="full-review">Our Review</button>
+                <button class="tab-button is-active" data-tab="reviews">Reviews</button>
                 <button class="tab-button" data-tab="pros-cons">Pros & Cons</button>
                 <button class="tab-button" data-tab="specifications">Specifications</button>
             </div>
             
             <div class="tab-container">
-                <div class="tab-section is-active" id="full-review">
-                    <h3 style="margin-bottom: 2rem; color: #ffffff;">Our Detailed Review</h3>
+                <div class="tab-section is-active" id="reviews">
+                    <h3 style="margin-bottom: 2rem; color: #ffffff;">Our Review</h3>
                     <div class="full-review-content" id="fullReviewText">
-                        Loading detailed review content...
+                        Coming Soon....
                     </div>
                 </div>
                 
@@ -631,25 +590,14 @@
             "op1-8k-v2": {
                 name: "OP1 8k v2",
                 brand: "Endgame Gear",
-                price: 89.99,
+                price: '$89.99',
                 rating: 5.0,
                 category: "Gaming Mouse",
                 icon: "🖱️",
                 image: "op18k.jpeg",
-                videoUrl: "https://youtube.com/watch?v=example",
-                quickVerdict: "The OP1 8K v2 is hands down one of the best gaming mice we've ever tested. The 8000Hz polling rate is game-changing for competitive players, and the build quality is absolutely premium. At $89, it's incredible value.",
-                detailedReview: `
-                    <h4>Performance & Gaming Experience</h4>
-                    <p>After weeks of testing the OP1 8K v2, we can confidently say this mouse delivers on its promises. The 8000Hz polling rate provides incredibly responsive tracking that's immediately noticeable in fast-paced FPS games. The sensor accuracy is spot-on, with zero acceleration or smoothing issues.</p>
-                    
-                    <h4>Build Quality & Design</h4>
-                    <p>Endgame Gear has really stepped up their game with the build quality. The mouse feels solid without being heavy, and the coating provides excellent grip during intense gaming sessions. The minimalist design is clean and professional.</p>
-                    
-                    <h4>Value for Money</h4>
-                    <p>At $89, this mouse competes directly with premium options from Logitech and Razer that cost significantly more. You're getting flagship performance at a mid-range price point.</p>
-                    
-                    <h4>Final Thoughts</h4>
-                    <p>This is easily one of our top recommendations for competitive gamers. The combination of performance, build quality, and price makes it a standout choice in 2024.</p>
+                videoUrl: "https://www.youtube.com/watch?v=JUadU6eS_HQ&t=146s",
+                detailedReview: ` 
+                Coming Soon....
                 `,
                 pros: [
                     "Incredible 8000Hz polling rate",
@@ -662,36 +610,28 @@
                 cons: [
                     "Only available in wired version",
                     "Limited color options",
-                    "Software could be more intuitive"
                 ],
                 specs: {
                     "Sensor": "PixArt PAW3395",
                     "DPI": "26,000",
                     "Polling Rate": "8000Hz",
-                    "Weight": "58g",
+                    "Weight": "50.5g",
                     "Buttons": "6",
-                    "Connection": "Wired USB-C"
+                    "Connection": "Wired USB-A"
                 }
             },
             "razer-deathadder-v3-pro": {
                 name: "Razer DeathAdder V3 Pro",
                 brand: "Razer",
-                price: 149.99,
+                price: '$149.99',
                 rating: 4.5,
                 category: "Gaming Mouse",
                 icon: "🖱️",
                 image: "razerviperv3pro.jpeg",
-                videoUrl: "https://youtube.com/watch?v=example2",
-                quickVerdict: "The DeathAdder V3 Pro is a solid wireless upgrade with excellent battery life and the classic DeathAdder shape. However, at $149, it faces stiff competition from newer alternatives.",
+                videoUrl: null, // No video available
                 detailedReview: `
-                    <h4>Wireless Performance</h4>
-                    <p>Razer's HyperSpeed wireless technology works flawlessly with zero noticeable lag. Battery life is impressive, lasting well over 70 hours of continuous gaming.</p>
+                    <h4> Coming Soon... </h4>
                     
-                    <h4>Ergonomics & Comfort</h4>
-                    <p>The classic DeathAdder shape remains one of the most comfortable for palm grip users. The updated materials feel premium and provide good grip.</p>
-                    
-                    <h4>Competition Concerns</h4>
-                    <p>While this is a good mouse, the market has become incredibly competitive. For the same price, you can get mice with higher polling rates or better value propositions.</p>
                 `,
                 pros: [
                     "Excellent wireless performance",
@@ -723,17 +663,10 @@
                 category: "Gaming Mouse",
                 icon: "🖱️",
                 image: "logitechprox.jpeg",
-                videoUrl: "https://youtube.com/watch?v=example3",
-                quickVerdict: "Still one of the best wireless gaming mice you can buy. The Superlight delivers on every front - performance, weight, and reliability. A safe choice for any competitive gamer.",
+                videoUrl: null, //No video
                 detailedReview: `
-                    <h4>Weight & Design</h4>
-                    <p>At just 63g, this mouse feels incredibly light while maintaining structural integrity. The ambidextrous design works for most grip styles.</p>
+                    <h4> Coming Soon... </h4>
                     
-                    <h4>Performance Excellence</h4>
-                    <p>The HERO sensor is among the best we've tested, with perfect tracking and zero issues across all surfaces we tried.</p>
-                    
-                    <h4>Proven Track Record</h4>
-                    <p>This mouse has been the choice of professional esports players for years, and for good reason. It just works, reliably, every time.</p>
                 `,
                 pros: [
                     "Ultra-lightweight design",
@@ -761,22 +694,15 @@
             "wooting-60he": {
                 name: "Wooting 60HE",
                 brand: "Wooting",
-                price: 174.99,
+                price: "$174.99",
                 rating: 4.6,
                 category: "Gaming Keyboard",
                 icon: "⌨️",
                 image: "wooting60he.jpeg",
-                videoUrl: "https://youtube.com/watch?v=example4",
-                quickVerdict: "The Wooting 60HE is revolutionary technology in a compact package. The analog input and rapid trigger features give you a real competitive advantage, but the learning curve and price might not be for everyone.",
+                videoUrl: null, //No video
                 detailedReview: `
-                    <h4>Revolutionary Technology</h4>
-                    <p>The Hall Effect switches with analog input are genuinely game-changing. Being able to control movement speed based on keypress depth opens up new possibilities in gaming.</p>
+                    <h4> Coming Soon... </h4>
                     
-                    <h4>Competitive Features</h4>
-                    <p>Rapid trigger and customizable actuation points give you a real edge in competitive games. The responsiveness is unmatched by traditional mechanical switches.</p>
-                    
-                    <h4>Learning Curve</h4>
-                    <p>It takes time to fully utilize all features. The software has a learning curve, but once mastered, offers incredible customization.</p>
                 `,
                 pros: [
                     "Revolutionary analog input",
@@ -804,22 +730,15 @@
             "zowie-xl2540k-240hz": {
                 name: "ZOWIE XL2540K 240Hz",
                 brand: "ZOWIE",
-                price: 289.99,
+                price: '$289.99',
                 rating: 4.8,
                 category: "Gaming Monitor",
                 icon: "🖥️",
                 image: "zowie240hz.jpg",
-                videoUrl: "https://youtube.com/watch?v=example5",
-                quickVerdict: "The XL2540K is the gold standard for competitive FPS gaming. While it lacks fancy features, it excels where it matters most - performance, responsiveness, and competitive advantages.",
+                videoUrl: null, // No video available
                 detailedReview: `
-                    <h4>Competitive Gaming Excellence</h4>
-                    <p>This monitor is built specifically for competitive FPS games. The DyAc+ technology genuinely reduces motion blur, making it easier to track targets during fast movements.</p>
+                    <h4> Coming Soon... </h4>
                     
-                    <h4>No-Frills Approach</h4>
-                    <p>ZOWIE focuses purely on performance over aesthetics. No RGB, no fancy stand, just pure gaming performance.</p>
-                    
-                    <h4>Professional Choice</h4>
-                    <p>There's a reason this monitor is used in major esports tournaments. It prioritizes function over form perfectly.</p>
                 `,
                 pros: [
                     "Excellent motion clarity",
@@ -847,22 +766,15 @@
             "zowie-xl2566k-360hz": {
                 name: "ZOWIE XL2566K 360Hz",
                 brand: "ZOWIE",
-                price: 599.99,
+                price: '$599.99',
                 rating: 4.7,
                 category: "Gaming Monitor",
                 icon: "🖥️",
                 image: "zowie360hz.avif",
-                videoUrl: "https://youtube.com/watch?v=example6",
-                quickVerdict: "The ultimate competitive gaming monitor. The 360Hz refresh rate provides the smoothest gaming experience possible, but you'll need a high-end PC to take full advantage. Worth it for serious competitive players.",
+                videoUrl: null, //No video
                 detailedReview: `
-                    <h4>360Hz Performance</h4>
-                    <p>The difference between 240Hz and 360Hz is subtle but real. In competitive scenarios, every frame matters, and this monitor delivers the absolute lowest input lag possible.</p>
+                    <h4> Coming Soon... </h4>
                     
-                    <h4>Premium Price, Premium Performance</h4>
-                    <p>At $600, this isn't for casual gamers. But if you're serious about competitive gaming and have the PC to drive it, the performance is unmatched.</p>
-                    
-                    <h4>Future-Proofing</h4>
-                    <p>As games become more optimized and PCs more powerful, having 360Hz capability ensures you're ready for the future of competitive gaming.</p>
                 `,
                 pros: [
                     "Unmatched 360Hz smoothness",
@@ -913,7 +825,7 @@
             document.getElementById('productNameDisplay').textContent = 'Review Not Found';
             document.getElementById('productMaker').textContent = 'Unknown';
             document.getElementById('productPriceDisplay').textContent = '$0.00';
-            document.getElementById('summaryVerdictText').textContent = 'Sorry, we could not find this review.';
+            document.getElementById('fullReviewText').textContent = 'Sorry, we could not find this review.';
         }
 
         function updateProductDisplay(product) {
@@ -923,7 +835,6 @@
             document.getElementById('productPriceDisplay').textContent = `${product.price}`;
             document.getElementById('productType').textContent = product.category;
             document.getElementById('productRatingDisplay').textContent = `${product.rating}/5`;
-            document.getElementById('summaryVerdictText').textContent = product.quickVerdict;
             document.getElementById('fullReviewText').innerHTML = product.detailedReview;
             
             // Star rating display
@@ -931,8 +842,14 @@
             const emptyStars = 5 - starCount;
             document.getElementById('productStarDisplay').textContent = '★'.repeat(starCount) + '☆'.repeat(emptyStars);
             
-            // Video link
-            document.getElementById('videoReviewLink').href = product.videoUrl;
+            // Video link - only show if video exists
+            const videoLink = document.getElementById('videoReviewLink');
+            if (product.videoUrl) {
+                videoLink.href = product.videoUrl;
+                videoLink.classList.remove('hidden');
+            } else {
+                videoLink.classList.add('hidden');
+            }
             
             // Product image or icon
             const imageContainer = document.getElementById('productImageDisplay');
